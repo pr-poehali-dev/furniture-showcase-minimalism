@@ -1,135 +1,209 @@
 
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, Instagram, Facebook, Twitter } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ArrowRight, Instagram, Facebook, Twitter, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#283618] text-white pt-14 pb-8">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
+    <footer className="bg-beige-100 pt-20 pb-10">
+      <div className="container mx-auto px-4">
+        {/* Newsletter section */}
+        <div className="bg-white rounded-3xl p-6 md:p-10 mb-16 shadow-lg hover-lift">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="max-w-md">
+              <h3 className="text-2xl font-bold mb-3">Подпишитесь на новости</h3>
+              <p className="text-muted-foreground">
+                Будьте в курсе новых коллекций, специальных предложений и эксклюзивных мероприятий
+              </p>
+            </div>
+            
+            <div className="w-full md:w-auto flex-1 max-w-md">
+              <form className="flex gap-3">
+                <Input 
+                  type="email" 
+                  placeholder="Ваш email" 
+                  className="flex-1 rounded-full border-beige-200 focus-visible:ring-accent-purple bg-beige-50"
+                />
+                <Button type="submit" className="bg-accent-purple hover:bg-accent-purple/90 text-white rounded-full px-6">
+                  Подписаться
+                </Button>
+              </form>
+              <p className="text-xs text-muted-foreground mt-2">
+                Подписываясь, вы соглашаетесь с нашей <Link to="/privacy" className="underline hover:text-accent-purple">политикой конфиденциальности</Link>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Main footer content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          {/* Column 1 - About */}
           <div>
-            <Link to="/" className="font-playfair text-2xl font-bold text-white inline-block mb-4">
-              ELEGANCE
+            <Link to="/" className="flex items-center space-x-2 mb-6">
+              <span className="text-2xl font-bold">
+                <span className="text-accent-purple">NOVA</span>
+                <span className="text-accent-pink">HAUS</span>
+              </span>
             </Link>
-            <p className="text-[#F5F0E5]/80 mb-6 max-w-xs">
-              Создаем интерьеры, которые вдохновляют. Наша мебель — это сочетание элегантного дизайна, качественных материалов и мастерства исполнения.
+            
+            <p className="text-muted-foreground mb-6">
+              Мы создаем необычную дизайнерскую мебель, которая становится центром внимания и меняет представление о жилом пространстве.
             </p>
             
             <div className="flex space-x-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#DDA15E] transition-colors">
-                <Instagram className="w-5 h-5" />
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full hover:bg-beige-200">
+                  <Instagram className="h-5 w-5" />
+                </Button>
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#DDA15E] transition-colors">
-                <Facebook className="w-5 h-5" />
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full hover:bg-beige-200">
+                  <Facebook className="h-5 w-5" />
+                </Button>
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#DDA15E] transition-colors">
-                <Twitter className="w-5 h-5" />
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full hover:bg-beige-200">
+                  <Twitter className="h-5 w-5" />
+                </Button>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full hover:bg-beige-200">
+                  <Linkedin className="h-5 w-5" />
+                </Button>
               </a>
             </div>
           </div>
           
-          {/* Navigation */}
+          {/* Column 2 - Navigation */}
           <div>
-            <h3 className="text-white font-medium text-lg mb-4">Навигация</h3>
+            <h3 className="font-bold text-lg mb-4">Навигация</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-[#F5F0E5]/80 hover:text-[#DDA15E] transition-colors">
+                <Link to="/" className="hover:text-accent-purple transition-colors">
                   Главная
                 </Link>
               </li>
               <li>
-                <Link to="/catalog" className="text-[#F5F0E5]/80 hover:text-[#DDA15E] transition-colors">
-                  Каталог
+                <Link to="/shop" className="hover:text-accent-purple transition-colors">
+                  Магазин
                 </Link>
               </li>
               <li>
-                <Link to="/collections" className="text-[#F5F0E5]/80 hover:text-[#DDA15E] transition-colors">
+                <Link to="/collections" className="hover:text-accent-purple transition-colors">
                   Коллекции
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-[#F5F0E5]/80 hover:text-[#DDA15E] transition-colors">
+                <Link to="/designers" className="hover:text-accent-purple transition-colors">
+                  Дизайнеры
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-accent-purple transition-colors">
                   О нас
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-[#F5F0E5]/80 hover:text-[#DDA15E] transition-colors">
+                <Link to="/blog" className="hover:text-accent-purple transition-colors">
+                  Блог
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-accent-purple transition-colors">
                   Контакты
                 </Link>
               </li>
             </ul>
           </div>
           
-          {/* Categories */}
+          {/* Column 3 - Categories */}
           <div>
-            <h3 className="text-white font-medium text-lg mb-4">Категории</h3>
+            <h3 className="font-bold text-lg mb-4">Категории</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/catalog/sofas" className="text-[#F5F0E5]/80 hover:text-[#DDA15E] transition-colors">
-                  Диваны
+                <Link to="/category/biomorphic" className="hover:text-accent-purple transition-colors">
+                  Биоморфная мебель
                 </Link>
               </li>
               <li>
-                <Link to="/catalog/tables" className="text-[#F5F0E5]/80 hover:text-[#DDA15E] transition-colors">
-                  Столы
+                <Link to="/category/interactive" className="hover:text-accent-purple transition-colors">
+                  Интерактивная мебель
                 </Link>
               </li>
               <li>
-                <Link to="/catalog/chairs" className="text-[#F5F0E5]/80 hover:text-[#DDA15E] transition-colors">
-                  Стулья
+                <Link to="/category/modular" className="hover:text-accent-purple transition-colors">
+                  Модульная мебель
                 </Link>
               </li>
               <li>
-                <Link to="/catalog/beds" className="text-[#F5F0E5]/80 hover:text-[#DDA15E] transition-colors">
-                  Кровати
+                <Link to="/category/eco" className="hover:text-accent-purple transition-colors">
+                  Экологичная мебель
                 </Link>
               </li>
               <li>
-                <Link to="/catalog/storage" className="text-[#F5F0E5]/80 hover:text-[#DDA15E] transition-colors">
-                  Шкафы и комоды
+                <Link to="/category/multifunctional" className="hover:text-accent-purple transition-colors">
+                  Многофункциональная мебель
+                </Link>
+              </li>
+              <li>
+                <Link to="/category/limited" className="hover:text-accent-purple transition-colors">
+                  Лимитированные коллекции
                 </Link>
               </li>
             </ul>
           </div>
           
-          {/* Contact Info */}
+          {/* Column 4 - Contact */}
           <div>
-            <h3 className="text-white font-medium text-lg mb-4">Контактная информация</h3>
+            <h3 className="font-bold text-lg mb-4">Контакты</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <MapPin className="w-5 h-5 text-[#DDA15E] mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-[#F5F0E5]/80">
-                  ул. Пушкина, д. 10, Москва, 123456, Россия
+                <MapPin className="h-5 w-5 text-accent-purple mr-3 mt-0.5 flex-shrink-0" />
+                <span>
+                  ул. Архитекторов, 15<br />
+                  Москва, 123456<br />
+                  Россия
                 </span>
               </li>
-              <li className="flex items-start">
-                <Phone className="w-5 h-5 text-[#DDA15E] mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-[#F5F0E5]/80">
-                  +7 (495) 123-45-67
-                </span>
+              <li className="flex items-center">
+                <Phone className="h-5 w-5 text-accent-purple mr-3 flex-shrink-0" />
+                <span>+7 (495) 123-45-67</span>
               </li>
-              <li className="flex items-start">
-                <Mail className="w-5 h-5 text-[#DDA15E] mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-[#F5F0E5]/80">
-                  info@elegance-furniture.ru
-                </span>
+              <li className="flex items-center">
+                <Mail className="h-5 w-5 text-accent-purple mr-3 flex-shrink-0" />
+                <span>hello@novahaus.ru</span>
               </li>
             </ul>
+            
+            <div className="mt-6">
+              <h4 className="font-medium mb-2">Часы работы:</h4>
+              <p className="text-muted-foreground">
+                Пн-Пт: 10:00 - 20:00<br />
+                Сб-Вс: 11:00 - 18:00
+              </p>
+            </div>
           </div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-[#F5F0E5]/60 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} ELEGANCE. Все права защищены.
+        {/* Bottom footer */}
+        <div className="pt-8 border-t border-beige-200 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} NovaHaus. Все права защищены.
           </p>
           
-          <div className="flex space-x-6">
-            <Link to="/privacy" className="text-[#F5F0E5]/60 hover:text-[#DDA15E] text-sm transition-colors">
+          <div className="flex flex-wrap gap-6 justify-center">
+            <Link to="/terms" className="text-sm hover:text-accent-purple transition-colors">
+              Условия использования
+            </Link>
+            <Link to="/privacy" className="text-sm hover:text-accent-purple transition-colors">
               Политика конфиденциальности
             </Link>
-            <Link to="/terms" className="text-[#F5F0E5]/60 hover:text-[#DDA15E] text-sm transition-colors">
-              Условия использования
+            <Link to="/shipping" className="text-sm hover:text-accent-purple transition-colors">
+              Доставка и возврат
+            </Link>
+            <Link to="/faq" className="text-sm hover:text-accent-purple transition-colors">
+              FAQ
             </Link>
           </div>
         </div>

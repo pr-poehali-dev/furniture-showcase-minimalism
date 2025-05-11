@@ -1,41 +1,43 @@
 
+import { useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ProductCarousel from '@/components/ProductCarousel';
 import CategorySection from '@/components/CategorySection';
 import FeatureSection from '@/components/FeatureSection';
 import Footer from '@/components/Footer';
-import { useEffect } from 'react';
 
 const Index = () => {
   useEffect(() => {
     // Update page title
-    document.title = "ELEGANCE - Мебельный магазин премиум-класса";
+    document.title = "NovaHaus - Необычная дизайнерская мебель";
     
     // Scroll to top on page load
     window.scrollTo(0, 0);
 
-    // Add Google Fonts for Playfair Display
+    // Add Google Fonts
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap';
+    link.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap';
     document.head.appendChild(link);
 
     return () => {
       // Clean up - remove the link if component unmounts
-      document.head.removeChild(link);
+      if (document.head.contains(link)) {
+        document.head.removeChild(link);
+      }
     };
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F2]">
+    <div className="min-h-screen flex flex-col font-poppins">
       <Header />
-      <main className="flex-grow">
+      <div className="pt-20"> {/* Adding padding for fixed header */}
         <HeroSection />
         <ProductCarousel />
         <CategorySection />
         <FeatureSection />
-      </main>
+      </div>
       <Footer />
     </div>
   );

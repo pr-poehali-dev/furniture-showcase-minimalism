@@ -1,40 +1,45 @@
 
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 interface CategoryCardProps {
   title: string;
+  description: string;
   image: string;
-  count: number;
+  color: string;
   link: string;
 }
 
-const CategoryCard = ({ title, image, count, link }: CategoryCardProps) => {
+const CategoryCard = ({ title, description, image, color, link }: CategoryCardProps) => {
   return (
     <Link 
       to={link}
-      className="group overflow-hidden rounded-lg relative h-80 block"
+      className="group block rounded-3xl overflow-hidden relative hover-lift"
     >
-      {/* Background image */}
-      <img 
-        src={image} 
-        alt={title}
-        className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-      />
-      
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent group-hover:via-black/35 transition-colors duration-300" />
+      {/* Background image with overlay */}
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <img 
+          src={image} 
+          alt={title}
+          className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className={`absolute inset-0 opacity-80 ${color} transition-opacity duration-300 group-hover:opacity-90`} />
+      </div>
       
       {/* Content */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-start">
-        <h3 className="font-playfair text-white text-2xl font-medium mb-1.5 group-hover:translate-x-2 transition-transform duration-300">
-          {title}
-        </h3>
-        <p className="text-white/80 text-sm mb-3 group-hover:translate-x-2 transition-transform duration-300 delay-75">
-          {count} товаров
-        </p>
-        <span className="inline-block py-2 px-4 bg-[#FAF7F2] text-[#283618] rounded-md font-medium text-sm transform translate-y-1 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-          Смотреть категорию
-        </span>
+      <div className="absolute inset-0 p-8 flex flex-col justify-between">
+        <div>
+          <h3 className="text-white text-2xl font-bold mb-2">{title}</h3>
+          <p className="text-white/80 max-w-xs">{description}</p>
+        </div>
+        
+        <div className="flex items-center text-white mt-4 overflow-hidden">
+          <span className="flex items-center font-medium transform group-hover:translate-x-0 translate-x-6 transition-transform duration-300">
+            Просмотреть
+            <ArrowRight className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </span>
+          <div className="flex-grow h-[1px] bg-white/30 ml-4 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+        </div>
       </div>
     </Link>
   );
@@ -43,38 +48,42 @@ const CategoryCard = ({ title, image, count, link }: CategoryCardProps) => {
 const CategorySection = () => {
   const categories = [
     {
-      title: "Диваны",
+      title: "Биоморфная мебель",
+      description: "Мебель, вдохновленная органическими формами природы",
+      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2158&q=80",
+      color: "bg-accent-purple",
+      link: "/category/biomorphic"
+    },
+    {
+      title: "Интерактивная мебель",
+      description: "Мебель с интегрированными технологиями и светом",
+      image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+      color: "bg-accent-pink",
+      link: "/category/interactive"
+    },
+    {
+      title: "Модульная мебель",
+      description: "Трансформируемые предметы для адаптивных пространств",
       image: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      count: 32,
-      link: "/catalog/sofas"
+      color: "bg-accent-blue",
+      link: "/category/modular"
     },
     {
-      title: "Столы",
-      image: "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
-      count: 45,
-      link: "/catalog/tables"
-    },
-    {
-      title: "Стулья",
+      title: "Экологичная мебель",
+      description: "Устойчивые материалы и инновационные технологии переработки",
       image: "https://images.unsplash.com/photo-1586158291800-2665f07bba79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-      count: 28,
-      link: "/catalog/chairs"
-    },
-    {
-      title: "Кровати",
-      image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      count: 21,
-      link: "/catalog/beds"
+      color: "bg-accent-green",
+      link: "/category/eco"
     }
   ];
   
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12">
-          <h2 className="font-playfair text-3xl font-bold text-[#283618] mb-3">Категории мебели</h2>
-          <p className="text-[#606C38] max-w-xl mx-auto">
-            Откройте для себя нашу коллекцию мебели, созданную с любовью к деталям и уважением к материалам
+    <section className="py-24 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Уникальные категории</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Исследуйте коллекции необычной мебели, которая сочетает в себе инновационный дизайн, функциональность и эстетику
           </p>
         </div>
         
@@ -84,13 +93,36 @@ const CategorySection = () => {
           ))}
         </div>
         
-        <div className="mt-12 text-center">
-          <Link 
-            to="/catalog" 
-            className="inline-block py-2.5 px-6 border border-[#DDA15E] text-[#DDA15E] rounded-md hover:bg-[#DDA15E]/10 transition-colors font-medium"
-          >
-            Все категории
-          </Link>
+        {/* Static highlight box */}
+        <div className="mt-16 rounded-3xl bg-beige-100 p-8 md:p-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="max-w-xl">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">Коллаборации с художниками</h3>
+              <p className="text-muted-foreground mb-6">
+                Откройте для себя лимитированные коллекции, созданные в сотрудничестве с современными художниками и дизайнерами. Каждое изделие – это произведение искусства, которое станет акцентом в вашем доме.
+              </p>
+              <Link 
+                to="/collaborations"
+                className="inline-flex items-center text-accent-purple font-medium hover:underline"
+              >
+                Исследовать коллаборации
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </div>
+            
+            <div className="relative">
+              <div className="w-72 h-72 rounded-full overflow-hidden border-8 border-white shadow-lg">
+                <img 
+                  src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                  alt="Artist collaboration" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -top-4 -right-4 bg-accent-pink text-white rounded-full px-4 py-2 font-medium shadow-lg">
+                NEW
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
